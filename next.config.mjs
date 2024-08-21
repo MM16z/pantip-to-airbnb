@@ -27,6 +27,22 @@ export default withSentryConfig(
       experimental: {
         serverComponentsExternalPackages: ['@electric-sql/pglite'],
       },
+      images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'upload.wikimedia.org',
+            port: '',
+            pathname: '/**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'f.ptcdn.info',
+            port: '',
+            pathname: '/**',
+          },
+        ],
+      },
     }),
   ),
   {

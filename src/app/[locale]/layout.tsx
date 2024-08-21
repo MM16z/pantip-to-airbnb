@@ -5,6 +5,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
 import { DemoBadge } from '@/components/DemoBadge';
+import StoreProvider from '@/components/redux/StoreProvider';
 import { AppConfig } from '@/utils/AppConfig';
 
 export const metadata: Metadata = {
@@ -48,14 +49,15 @@ export default function RootLayout(props: {
   return (
     <html lang={props.params.locale}>
       <body>
-        <NextIntlClientProvider
-          locale={props.params.locale}
-          messages={messages}
-        >
-          {props.children}
-
-          <DemoBadge />
-        </NextIntlClientProvider>
+        <StoreProvider>
+          <NextIntlClientProvider
+            locale={props.params.locale}
+            messages={messages}
+          >
+            {props.children}
+            <DemoBadge />
+          </NextIntlClientProvider>
+        </StoreProvider>
       </body>
     </html>
   );

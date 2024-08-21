@@ -1,100 +1,25 @@
-import { useTranslations } from 'next-intl';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import TabsComponent from '@/components/tabs/Tabs';
+import MainContentSection from '@/sections/homepage/MainContentSection';
 
-import { Sponsors } from '@/components/Sponsors';
-
-export async function generateMetadata(props: { params: { locale: string } }) {
-  const t = await getTranslations({
-    locale: props.params.locale,
-    namespace: 'Index',
-  });
-
-  return {
-    title: t('meta_title'),
-    description: t('meta_description'),
-  };
-}
-
-export default function Index(props: { params: { locale: string } }) {
-  unstable_setRequestLocale(props.params.locale);
-  const t = useTranslations('Index');
-
+export default async function Index() {
   return (
-    <>
-      <p>
-        {`Looking for a SaaS Boilerplate? `}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://nextjs-boilerplate.com/pro-saas-starter-kit"
-        >
-          Next.js Boilerplate SaaS
-        </a>
-        {` can help you build one.`}
-      </p>
-      <p>
-        {`Follow `}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://twitter.com/ixartz"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          @Ixartz on Twitter
-        </a>
-        {` for updates and more information about the boilerplate.`}
-      </p>
-      <p>
-        Our sponsors&apos; exceptional support has made this project possible.
-        Their services integrate seamlessly with the boilerplate, and we
-        recommend trying them out.
-      </p>
-      <h2 className="mt-5 text-2xl font-bold">{t('sponsors_title')}</h2>
-      <Sponsors />
-      <h2 className="mt-5 text-2xl font-bold">
-        Boilerplate Code for Your Next.js Project with Tailwind CSS
-      </h2>
-      <p className="text-base">
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>
+    <div className="flex flex-col items-center justify-center px-6">
+      <div element-attb="tabs-container" className="max-w-full px-4 pt-4">
+        <TabsComponent />
+      </div>
+      <MainContentSection />
+      <div className="pb-10">
+        example api = https://pantip.com/api/forum-service/forum/room_topic?room=siliconvalley&limit=50&next_id=42916592
+        <br />
+        query =
         {' '}
-        Next.js Boilerplate is a developer-friendly starter code for Next.js
-        projects, built with Tailwind CSS, and TypeScript.
+        {`{room: siliconvalley
+        limit: 50
+        next_id: 42916592}`}
+        <br />
+        ps to query other data still dont know how next_id is
         {' '}
-        <span role="img" aria-label="zap">
-          ⚡️
-        </span>
-        {' '}
-        Made with developer experience first: Next.js, TypeScript, ESLint,
-        Prettier, Husky, Lint-Staged, Jest (replaced by Vitest), Testing
-        Library, Commitlint, VSCode, PostCSS, Tailwind CSS, Authentication with
-        {' '}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://clerk.com?utm_source=github&amp;utm_medium=sponsorship&amp;utm_campaign=nextjs-boilerplate"
-        >
-          Clerk
-        </a>
-        , Database with DrizzleORM (PostgreSQL, SQLite, and MySQL), Error
-        Monitoring with
-        {' '}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://sentry.io/for/nextjs/?utm_source=github&amp;utm_medium=paid-community&amp;utm_campaign=general-fy25q1-nextjs&amp;utm_content=github-banner-nextjsboilerplate-logo"
-        >
-          Sentry
-        </a>
-        , Logging with Pino.js and Log Management with
-        {' '}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://betterstack.com/?utm_source=github&amp;utm_medium=sponsorship&amp;utm_campaign=next-js-boilerplate"
-        >
-          Better Stack
-        </a>
-        , Monitoring as Code with Checkly, Storybook, Multi-language (i18n), and
-        more.
-      </p>
-    </>
+      </div>
+    </div>
   );
 }

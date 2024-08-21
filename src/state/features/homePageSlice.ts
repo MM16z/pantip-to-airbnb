@@ -1,9 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export type roomTabsStateType = {
+  id: number;
+  name_en: string;
+  name: string;
+  room_icon_url: string;
+};
+
+export type mainContentStateType = {
+  topic_id: number;
+  title: string;
+  thumbnail_url: string;
+  author: {
+    name: string;
+  };
+  cover_img: string;
+};
+
 // add types later
 export type homePageState = {
-  roomTabsState: any[];
-  mainContentState: any[];
+  roomTabsState: roomTabsStateType[];
+  mainContentState: mainContentStateType[];
   currentTabName: string;
 };
 

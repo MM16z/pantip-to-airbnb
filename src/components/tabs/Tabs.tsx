@@ -59,6 +59,31 @@ export default function TabsComponent() {
           marginTop: '-14px',
         },
       }}
+      TabIndicatorProps={{
+        sx: {
+          // 'backgroundColor': 'black',
+        },
+        children: <span className="MuiTabs-indicatorSpan" />,
+      }}
+      textColor="inherit"
+      sx={{
+        '& .MuiButtonBase-root.MuiTab-root': {
+          rowGap: '4px',
+        },
+        '& .MuiTabs-indicatorSpan': {
+          maxWidth: 40,
+          width: '100%',
+          backgroundColor: '#000000',
+        },
+        '& .MuiTabs-indicator': {
+          display: 'flex',
+          justifyContent: 'center',
+          backgroundColor: 'transparent',
+        },
+        '& .MuiTabs-scrollButtons.Mui-disabled': {
+          opacity: 0.3,
+        },
+      }}
     >
       {useTabsState?.map((data: any) => (
         <Tab
@@ -71,8 +96,8 @@ export default function TabsComponent() {
             <Image
               alt="icon"
               src={data?.room_icon_url}
-              width={48}
-              height={48}
+              width={32}
+              height={32}
               style={{ backgroundColor: 'black', borderRadius: '50%' }}
             />
           )}

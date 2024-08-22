@@ -4,7 +4,7 @@ import MainContentSection from '@/sections/homepage/MainContentSection';
 export default async function Index() {
   return (
     <div className="flex flex-col items-center justify-center px-6">
-      <div element-attb="tabs-container" className="max-w-full px-4 pt-4">
+      <div element-attb="tabs-container" className="max-w-full px-4 py-[12px]">
         <TabsComponent />
       </div>
       <MainContentSection />

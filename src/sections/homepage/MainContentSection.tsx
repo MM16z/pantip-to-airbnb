@@ -28,7 +28,7 @@ export default function MainContentSection() {
   }, [useCurrentTabName, getAllRoomsData]);
 
   return (
-    <div element-attb="content-container" className="grid grid-cols-1 gap-5 px-10 pb-10 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+    <div element-attb="content-container" className="grid grid-cols-1 items-center gap-8 pb-10 pt-4 sm:grid-cols-2 sm:pt-0 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
       {/* <CardComponent /> */}
       {useMaincontentState?.map(data => (
         <CardComponent key={data?.topic_id} contentImageUrl={data?.thumbnail_url || data?.cover_img} contentTitle={data?.title} author={data?.author?.name} />

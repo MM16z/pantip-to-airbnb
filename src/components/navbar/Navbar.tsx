@@ -6,8 +6,8 @@ import NavbarSearchInput from './NavbarSearchInput';
 
 export default function Navbar() {
   return (
-    <nav className="size-full h-[168px] border-b border-gray-200">
-      <div element-attb="navbar-row-1" className="flex h-2/5 flex-row items-center justify-center gap-x-6 px-6 sm:justify-between sm:gap-x-0 sm:px-20">
+    <nav className="size-full h-fit border-b-0 sm:h-[168px]  sm:border-b sm:border-gray-200">
+      <div element-attb="navbar-row-1" className="hidden h-[80px] flex-row items-center justify-center gap-x-6 px-6 sm:flex sm:justify-between sm:gap-x-0 sm:px-20">
         <div element-attb="navbar-row-1-col-1" className="h-[48px] w-[96px]">
           <Image alt="logo" src="https://upload.wikimedia.org/wikipedia/th/thumb/c/c5/Pantip_Logo.png/800px-Pantip_Logo.png?20150807164208" style={{ borderRadius: '8px' }} width={100} height={100}></Image>
         </div>
@@ -25,7 +25,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div element-attb="navbar-row-2" className="flex h-3/5 flex-row justify-around">
+      <div element-attb="navbar-row-2" className="flex h-[64px] flex-row justify-around px-3 sm:h-[88px]">
         <NavbarSearchInput />
       </div>
     </nav>

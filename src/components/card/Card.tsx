@@ -31,17 +31,18 @@ export default function CardComponent({ contentImageUrl, contentTitle, author }:
   //   });
   // }
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+    <Card sx={{ maxWidth: 345, border: 'inherit', boxShadow: 'inherit', alignSelf: 'flex-start' }}>
+      <CardActionArea className="flex flex-col items-center">
         <Image
-          height="140"
-          style={{ objectFit: 'contain', maxHeight: '240px' }}
+          height={250}
+          style={{ objectFit: 'cover', maxHeight: '250px', minHeight: '250px', borderRadius: '12px' }}
           alt="green iguana"
           src={!contentImageUrl ? NoImagePng : contentImageUrl}
-          width={345}
+          width={263}
+
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent className="p-3 sm:p-3">
+          <Typography gutterBottom component="div" className="mb-2 text-sm font-bold">
             {/* {parseStringToReact(contentTitle)} */}
             {contentTitle}
           </Typography>

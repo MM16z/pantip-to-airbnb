@@ -2,14 +2,20 @@ import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import NoImagePng from '@/assets/images/no-image.png';
+import { formatTimeDifference } from '@/utils/formatTimeDifference';
 
 type pagePropType = {
   contentImageUrl: string;
   contentTitle: string;
   author: string;
+  tags: {
+    name: string;
+  }[];
+  commentCount: number;
+  createdTime: string;
 };
 
-export default function CardComponent({ contentImageUrl, contentTitle, author }: pagePropType) {
+export default function CardComponent({ contentImageUrl, contentTitle, author, tags, commentCount, createdTime }: pagePropType) {
   function parseStringToReact(input: any) {
     const parts = input?.split(/(\{\{em\}\}|\{\{eem\}\})/);
     let isEmphasized = false;
@@ -28,6 +34,7 @@ export default function CardComponent({ contentImageUrl, contentTitle, author }:
       }
     });
   }
+
   return (
     <Card sx={{ maxWidth: 345, border: 'inherit', boxShadow: 'inherit', alignSelf: 'flex-start' }}>
       <CardActionArea className="flex flex-col items-center">
@@ -39,12 +46,35 @@ export default function CardComponent({ contentImageUrl, contentTitle, author }:
           width={263}
 
         />
-        <CardContent className="p-3 sm:p-3">
+        <CardContent
+          sx={{
+            padding: '12px 12px 12px 0px',
+            alignSelf: 'flex-start',
+          }}
+        >
           <Typography gutterBottom component="div" className="mb-2 text-sm font-bold">
             {parseStringToReact(contentTitle)}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" className="mb-2 flex flex-wrap gap-y-2">
+            {tags?.map((tag, index) => (
+              <span
+                className="mr-2 rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800"
+                key={index}
+              >
+                <span className="mb-1">{tag.name}</span>
+              </span>
+            ))}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" className="mb-2">
             {author}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" className="flex flex-row justify-between">
+            <span>
+              {commentCount}
+              {' '}
+              comments
+            </span>
+            <span>{formatTimeDifference(createdTime)}</span>
           </Typography>
         </CardContent>
       </CardActionArea>

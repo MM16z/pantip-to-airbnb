@@ -10,11 +10,16 @@ export type roomTabsStateType = {
 export type mainContentStateType = {
   topic_id: number;
   title: string;
+  tags: {
+    name: string;
+  }[];
   thumbnail_url: string;
   author: {
     name: string;
   };
   cover_img: string;
+  comments_count: number;
+  created_time: string;
 };
 
 // add types later

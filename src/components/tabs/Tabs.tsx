@@ -83,6 +83,11 @@ export default function TabsComponent() {
         '& .MuiTabs-scrollButtons.Mui-disabled': {
           opacity: 0.3,
         },
+        '& .MuiSvgIcon-root': {
+          border: '1px solid grey',
+          borderRadius: '50%',
+          scale: '0.8',
+        },
       }}
     >
       {useTabsState?.map((data: any) => (

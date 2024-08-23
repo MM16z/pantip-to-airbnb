@@ -1,16 +1,21 @@
 export function formatTimeDifference(createdTime: string): string {
-  const now = new Date().getTime(); // Get the current time in milliseconds
-  const createdDate = new Date(createdTime).getTime(); // Convert createdTime to milliseconds
-  const diffMs = now - createdDate;
+  const createdDate = new Date(createdTime);
+
+  if (Number.isNaN(createdDate.getTime())) {
+    return ' ';
+  }
+
+  const now = new Date().getTime();
+  const diffMs = now - createdDate.getTime();
 
   const diffMinutes = Math.floor(diffMs / 60000);
   const diffHours = Math.floor(diffMs / 3600000);
 
   if (diffHours >= 1) {
-    return `${diffHours} ชั่วโมง`; // Use template literal
+    return `${diffHours} ชั่วโมง`;
   } else if (diffMinutes >= 1) {
-    return `${diffMinutes} นาที`; // Use template literal
+    return `${diffMinutes} นาที`;
   } else {
-    return 'ไม่กี่วินาทีที่ผ่านมา'; // For times less than a minute
+    return 'ไม่กี่วินาทีที่ผ่านมา';
   }
 }

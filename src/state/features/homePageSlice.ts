@@ -20,6 +20,7 @@ export type mainContentStateType = {
   cover_img: string;
   comments_count: number;
   created_time: string;
+  total_comment: number;
 };
 
 // add types later

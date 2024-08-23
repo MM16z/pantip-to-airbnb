@@ -68,13 +68,13 @@ export default function CardComponent({ contentImageUrl, contentTitle, author, t
           <Typography variant="body2" color="text.secondary" className="mb-2">
             {author}
           </Typography>
-          <Typography variant="body2" color="text.secondary" className="flex flex-row justify-between">
+          <Typography variant="body2" color="text.secondary" className="grid grid-cols-2">
             <span>
               {commentCount}
               {' '}
               comments
             </span>
-            <span>{formatTimeDifference(createdTime)}</span>
+            <span className="justify-self-end">{formatTimeDifference(createdTime)}</span>
           </Typography>
         </CardContent>
       </CardActionArea>

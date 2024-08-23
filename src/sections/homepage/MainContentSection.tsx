@@ -27,13 +27,8 @@ export default function MainContentSection() {
     getAllRoomsData();
   }, [useCurrentTabName, getAllRoomsData]);
 
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('useMaincontentState', useMaincontentState);
-  }, [useMaincontentState]);
-
   return (
-    <div element-attb="content-container" className="grid grid-cols-1 items-center gap-8 pb-10 pt-4 sm:grid-cols-2 sm:pt-0 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+    <div element-attb="content-container" className="grid grid-cols-1 items-center gap-8 px-0 pb-10 pt-4 sm:grid-cols-2 sm:px-14 sm:pt-0 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
       {/* <CardComponent /> */}
       {useMaincontentState?.map(data => (
         <CardComponent key={data?.topic_id} contentImageUrl={data?.thumbnail_url || data?.cover_img} contentTitle={data?.title} author={data?.author?.name} tags={data?.tags} commentCount={data?.comments_count} createdTime={data?.created_time} />

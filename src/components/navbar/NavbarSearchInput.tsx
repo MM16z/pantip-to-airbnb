@@ -26,6 +26,10 @@ export default function NavbarSearchInput() {
       });
       if (response) {
         dispatch(setMainContentState(response.data));
+        window.scrollTo({
+          top: (document.querySelector('.content-container') as HTMLElement)?.offsetTop || 0,
+          behavior: 'smooth',
+        });
       }
     }
   };

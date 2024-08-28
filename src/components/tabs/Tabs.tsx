@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { getAllRooms, getTabsContent } from '@/api/homePageApiService';
-import { setCurrentTabName, setMainContentState, setRoomTabsState } from '@/state/features/homePageSlice';
+import { setCurrentRoomName, setCurrentTabName, setMainContentState, setRoomTabsState } from '@/state/features/homePageSlice';
 import { useAppDispatch, useAppSelector } from '@/state/hook';
 
 export default function TabsComponent() {
@@ -13,8 +13,9 @@ export default function TabsComponent() {
   const [value, setValue] = useState(0);
   const [currentTopicName, setCurrentTopicName] = useState('');
 
-  const onTabClick = async (topicName: string) => {
+  const onTabClick = async (topicName: string, roomName: string) => {
     setCurrentTopicName(topicName);
+    dispatch(setCurrentRoomName(roomName));
   };
 
   const getAllTopicData = useCallback(async () => {
@@ -27,9 +28,11 @@ export default function TabsComponent() {
   const getAllRoomsData = useCallback(async () => {
     const response = await getAllRooms();
     const initialTabsName = response?.data[0]?.name_en;
+    const initialRoomName = response?.data[0]?.name;
     if (response) {
       dispatch(setRoomTabsState(response.data));
       dispatch(setCurrentTabName(initialTabsName));
+      dispatch(setCurrentRoomName(initialRoomName));
     }
   }, [dispatch]);
 
@@ -68,12 +71,15 @@ export default function TabsComponent() {
       textColor="inherit"
       sx={{
         '& .MuiButtonBase-root.MuiTab-root': {
-          rowGap: '4px',
+          rowGap: '2px',
         },
         '& .MuiTabs-indicatorSpan': {
           maxWidth: 40,
           width: '100%',
-          backgroundColor: '#000000',
+          backgroundColor: '#6b21a8b6',
+        },
+        '& .MuiTouchRipple-root': {
+          opacity: 0,
         },
         '& .MuiTabs-indicator': {
           display: 'flex',
@@ -82,6 +88,16 @@ export default function TabsComponent() {
         },
         '& .MuiTabs-scrollButtons.Mui-disabled': {
           opacity: 0.3,
+        },
+        '& .MuiTabs-scrollButtons': {
+          'backgroundColor': 'transparent',
+          'transition': 'none',
+          '&:hover': {
+            backgroundColor: 'transparent',
+          },
+          '&:active': {
+            backgroundColor: 'transparent',
+          },
         },
         '& .MuiSvgIcon-root': {
           border: '1px solid grey',
@@ -95,7 +111,15 @@ export default function TabsComponent() {
           label={data?.name}
           key={data?.id}
           onClick={() => {
-            onTabClick(data?.name_en);
+            onTabClick(data?.name_en, data?.name);
+          }}
+          sx={{
+            fontFamily: 'inherit',
+            backgroundColor: '#ba66ff44',
+            borderRadius: '20px',
+            padding: '0px',
+            minWidth: '80px',
+            marginRight: '16px',
           }}
           icon={(
             <Image
@@ -103,7 +127,7 @@ export default function TabsComponent() {
               src={data?.room_icon_url}
               width={32}
               height={32}
-              style={{ backgroundColor: 'black', borderRadius: '50%' }}
+              style={{ backgroundColor: '#6b21a8b6', borderRadius: '50%' }}
             />
           )}
         />

@@ -7,6 +7,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { DemoBadge } from '@/components/DemoBadge';
 import StoreProvider from '@/components/redux/StoreProvider';
 import { AppConfig } from '@/utils/AppConfig';
+import { prompt } from '@/utils/fonts';
 
 export const metadata: Metadata = {
   icons: [
@@ -47,7 +48,7 @@ export default function RootLayout(props: {
   const messages = useMessages();
 
   return (
-    <html lang={props.params.locale}>
+    <html lang={props.params.locale} className={prompt.className}>
       <body>
         <StoreProvider>
           <NextIntlClientProvider

@@ -28,12 +28,14 @@ export type homePageState = {
   roomTabsState: roomTabsStateType[];
   mainContentState: mainContentStateType[];
   currentTabName: string;
+  currentRoomName: string;
 };
 
 const initialState: homePageState = {
   roomTabsState: [],
   mainContentState: [],
   currentTabName: '',
+  currentRoomName: '',
 };
 
 export const homePageSlice = createSlice({
@@ -49,9 +51,12 @@ export const homePageSlice = createSlice({
     setCurrentTabName: (state: any, action) => {
       state.currentTabName = action.payload;
     },
+    setCurrentRoomName: (state: any, action) => {
+      state.currentRoomName = action.payload;
+    },
   },
 });
 
-export const { setMainContentState, setRoomTabsState, setCurrentTabName } = homePageSlice.actions;
+export const { setMainContentState, setRoomTabsState, setCurrentTabName, setCurrentRoomName } = homePageSlice.actions;
 
 export default homePageSlice.reducer;

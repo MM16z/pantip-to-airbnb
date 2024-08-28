@@ -41,6 +41,12 @@ export default withSentryConfig(
             port: '',
             pathname: '/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'ptcdn.info',
+            port: '',
+            pathname: '/**',
+          },
         ],
       },
     }),
